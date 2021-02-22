@@ -1,8 +1,8 @@
 const db = require('../data/dbConfig');
-const { request } = require('./server.js');
+// const { request } = require('./server.js');
 const server = require('./server.js')
 const request = require('supertest')
-
+// const {testing}  = require('../knexfile')
 
 
 beforeAll(async () =>{
@@ -22,33 +22,33 @@ afterAll(async () =>{
 describe('server.js', () =>{
 
     test('we are in the env', () =>{
-        expect(process.env.DB_ENV).tobe('testing')
+        expect(process.env.DB_ENV).toBe('testing');
     })
 
     describe('GET /', ()=>{
             let res;
+            
 
             beforeEach(async () =>{
                 res = await request(server).get('/')
             })
             test('returns 200 0K', () =>{
-                return request(srv)
-                    .get('/').then(res =>{
-                        expect(res.status).tobe(200);
-                }) 
+                return request(server).get('/').then(res =>{expect(res.status).toBe(200);}) 
             })
 
             test('return 200 OK async ', async() =>{
-                expect(res.status).tobe(200);
+                expect(res.status).toBe(200);
             })
 
             test('returns json type', async () =>{
-                expect(res.type).tobe('application/json')
+                expect(res.type).toBe('application/json')
             })
 
             test('returns {api:"up"}', async() =>{
+                // const res = await request(server).get('/');
                 expect(res.body).toEqual({api:"up"});
-            })
+            });
+
 
     });
 })
